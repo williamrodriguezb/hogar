@@ -1,0 +1,41 @@
+backendBundle\Entity\Hogar:
+    type: entity
+    table: hogar
+    indexes:
+        fk_hogar_usuarios:
+            columns:
+                - usuario_id
+    id:
+        hogarId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: hogar_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        creado:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+    manyToOne:
+        usuario:
+            targetEntity: Usuarios
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                usuario_id:
+                    referencedColumnName: usuario_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
