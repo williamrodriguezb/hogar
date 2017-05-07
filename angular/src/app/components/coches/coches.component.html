@@ -1,0 +1,47 @@
+<h1>{{titulo}}</h1>
+
+
+
+
+<div>
+	<form action="" #formCoche="ngForm" (ngSubmit)='onSubmit(); formCoche.reset()'>
+		<p>
+		<label for="nombre">Nombre</label>
+		<input type="text" #nombre='ngModel' [(ngModel)]="coche.nombre" name="nombre" required="" pattern="[a-z ]+">
+		<span *ngIf="nombre.touched && !nombre.valid">Nombre de coche Incorrecto!</span>
+		</p>
+		<p>
+		<label for="caballos">caballos</label>
+		<input type="text" name='caballos' #caballos='ngModel' [(ngModel)]="coche.caballos" required="" pattern="[0-9]+" >
+		<span *ngIf="caballos.touched && !caballos.valid">Numero de caballos Incorrecto!</span>
+		</p>	
+		<p>
+		<label for="color">color</label>
+		<input type="text" name='color' #color='ngModel' [(ngModel)]="coche.color" required="" pattern="[a-zA-Z#]+">
+		<span *ngIf="color.touched && !color.valid">Color de coche Incorrecto!</span>
+		</p>
+		<input type="submit" value="Guardar" [disabled]="!formCoche.form.valid">
+		
+	</form>
+</div>
+
+
+<div *ngIf="coche" >
+	<ul>
+		<li *ngFor="let coche of listadoCoches">
+		{{coche.nombre}}-{{coche.caballos}}-{{coche.color}}
+		</li>
+	</ul>
+
+</div>
+
+<div *ngIf="coche" >
+	<ul *ngIf='articulos'>
+		<li *ngFor="let articulo of articulos">
+		{{articulo.usuario}}-{{articulo.email}}-{{articulo.body}}
+		</li>
+	</ul>
+	<span *ngIf='!articulos'>cargando........</span>
+
+</div>
+
